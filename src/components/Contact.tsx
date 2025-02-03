@@ -74,7 +74,7 @@ const Contact = () => {
 
     console.log({ payload });
 
-    fetch("https://paligroupservices.org/api/sendmail", {
+    fetch("https://www.paligroupservices.org/api/sendmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
