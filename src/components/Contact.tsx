@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
@@ -35,7 +35,10 @@ const Contact = () => {
 
   const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target;
-    setMailData((prevMailData: MailData) => ({ ...prevMailData, [name]: value }));
+    setMailData((prevMailData: MailData) => ({
+      ...prevMailData,
+      [name]: value,
+    }));
   };
 
   // Handle form submission
@@ -50,6 +53,7 @@ const Contact = () => {
 
   interface ApiResponse {
     success: boolean;
+    status?: string;
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,7 +74,7 @@ const Contact = () => {
 
     console.log({ payload });
 
-    fetch("https://api.paligroupservices.org/api/v1/contact", {
+    fetch("https://paligroupservices.org/api/sendmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +84,7 @@ const Contact = () => {
       .then((response) => response.json())
       .then((data: ApiResponse) => {
         console.log(data);
-        if (data.success) {
+        if (data.status) {
           toast.success("Message submitted successfully!", {
             position: "top-center",
             autoClose: 3000,
@@ -241,7 +245,8 @@ const Contact = () => {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-center justify-start lg:justify-start">
-                <FaLocationDot className="text-default mr-2 text-[22px]" /> 505 Montgomery Street Suite 1100 San Francisco, CA 94111
+                <FaLocationDot className="text-default mr-2 text-[22px]" /> 505
+                Montgomery Street Suite 1100 San Francisco, CA 94111
               </li>
               <li className="flex items-center justify-start lg:justify-start">
                 <FaPhoneAlt className="text-default mr-2" /> +1 415-297-3432

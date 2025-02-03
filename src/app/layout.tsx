@@ -63,12 +63,12 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#ffffff" />
 
-        {/* Preload Fonts */}
+        {/* Preload Fonts
         <link
           rel="preload"
           href="https://fonts.googleapis.com/css2?family=Geist&family=Geist+Mono&display=swap"
           as="style"
-        />
+        /> */}
       </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
