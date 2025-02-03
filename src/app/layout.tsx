@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import Head from "next/head";
+import ficon from "@/assets/images/ficon.png";
 // import { NavBar } from "@/shared/Navbar";
 // import Footer from "@/shared/Footer";
 
@@ -18,6 +19,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pali Group Service LLC",
+  icons: {
+    icon: ficon.src,
+  },
   description:
     "Pali Group Service LLC offers premium services tailored to your needs. Explore our professional solutions.",
   authors: [{ name: "Pali Group Service LLC" }],
@@ -28,7 +32,7 @@ export const metadata: Metadata = {
     "Business Solutions",
     "Consulting",
   ],
-  metadataBase: new URL("https://www.paligroupservices.com"), 
+  metadataBase: new URL("https://www.paligroupservices.com"),
   openGraph: {
     title: "Pali Group Service LLC",
     description:
@@ -38,13 +42,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-image.png", 
+        url: "/images/og-image.png",
         height: 630,
         alt: "Pali Group Service LLC",
       },
     ],
   },
- 
 };
 
 export default function RootLayout({
@@ -56,7 +59,12 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         {/* Favicon */}
-        <link rel="icon" type="image/png" href="/images/ficon.png" sizes="32x32" />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/images/ficon.png"
+          sizes="32x32"
+        />
         <link rel="apple-touch-icon" href="/images/ficon.png" />
 
         {/* SEO Meta Tags */}
