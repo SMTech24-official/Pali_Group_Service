@@ -1,4 +1,20 @@
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+
+// Enable CORS manually
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      },
+    }
+  );
+}
 
 export const POST = async (req: Request) => {
   try {
@@ -8,7 +24,12 @@ export const POST = async (req: Request) => {
     if (!body) {
       return new Response(
         JSON.stringify({ status: 404, message: "No data Found" }),
-        { status: 404 }
+        {
+          status: 404,
+          headers: {
+            "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+          },
+        }
       );
     }
 
@@ -17,7 +38,12 @@ export const POST = async (req: Request) => {
     if (!email || !subject || !message) {
       return new Response(
         JSON.stringify({ status: 400, message: "Missing required fields" }),
-        { status: 400 }
+        {
+          status: 400,
+          headers: {
+            "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+          },
+        }
       );
     }
 
@@ -28,7 +54,9 @@ export const POST = async (req: Request) => {
         // user: process.env.NEXT_PUBLIC_EMAIL_USER,
         // pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
         user: "christina.pali@paligroupservices.org",
-        pass: "ouew pxvg kvqi zzaj",
+        pass: "flgh ozgd dnhh wcqq",
+        // user: "rony830388@gmail.com",
+        // pass: "alkp kjvk uceb tybj",
       },
     });
 
@@ -49,13 +77,24 @@ export const POST = async (req: Request) => {
 
     return new Response(
       JSON.stringify({ status: 200, message: "Email sent successfully" }),
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+        },
+      }
     );
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     return new Response(
       JSON.stringify({ status: 500, message: errorMessage }),
-      { status: 500 }
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+        },
+      }
     );
   }
 };

@@ -87,11 +87,6 @@ const Contact = () => {
         if (data.status) {
           toast.success("Message submitted successfully!", {
             position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
           });
           setMailData({
             fullName: "",
@@ -103,11 +98,6 @@ const Contact = () => {
         } else {
           toast.error("Failed to submit the message!", {
             position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
           });
         }
       })
