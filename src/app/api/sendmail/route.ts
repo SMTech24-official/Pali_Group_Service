@@ -71,6 +71,8 @@ export const POST = async (req: Request) => {
 
     // console.log("body", body)
 
+    // email sent
+
     // Email options
     const mailOptions = {
       from: email,
