@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Dynamically set allowed origin for development and production
+const allowedOrigins = [
+  "http://localhost:3000", 
+  "https://www.paligroupservices.org", 
+];
+
 // Enable CORS manually
-export async function OPTIONS() {
+export async function OPTIONS(req: Request) {
+  const origin = req.headers.get("origin");
+  const allowedOrigin = allowedOrigins.includes(origin || "") ? origin : "";
+
   return NextResponse.json(
     {},
     {
       status: 200,
       headers: {
-        "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+        "Access-Control-Allow-Origin": allowedOrigin || "",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },
@@ -27,7 +36,7 @@ export const POST = async (req: Request) => {
         {
           status: 404,
           headers: {
-            "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+            "Access-Control-Allow-Origin": allowedOrigins.join(", "),
           },
         }
       );
@@ -41,7 +50,7 @@ export const POST = async (req: Request) => {
         {
           status: 400,
           headers: {
-            "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+            "Access-Control-Allow-Origin": allowedOrigins.join(", "),
           },
         }
       );
@@ -80,7 +89,7 @@ export const POST = async (req: Request) => {
       {
         status: 200,
         headers: {
-          "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+          "Access-Control-Allow-Origin": allowedOrigins.join(", "),
         },
       }
     );
@@ -92,7 +101,7 @@ export const POST = async (req: Request) => {
       {
         status: 500,
         headers: {
-          "Access-Control-Allow-Origin": "https://www.paligroupservices.org",
+          "Access-Control-Allow-Origin": allowedOrigins.join(", "),
         },
       }
     );
